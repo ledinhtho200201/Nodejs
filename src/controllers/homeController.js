@@ -15,8 +15,6 @@ let getHomePage = async (req, res) => {
     } catch (e) {
         console.log(e)
     }
-
-
 }
 
 let getAboutPage = (req, res) => {
