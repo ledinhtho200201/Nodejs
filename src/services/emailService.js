@@ -19,7 +19,15 @@ let sendSimpleEmail = async (dataSend) => {
         from: '"Dr.Thold 👻" <thodortor@gmail.com>', // sender address
         to: dataSend.receiverEmail, // list of receivers
         subject: "Thông tin đặt lịch khám bệnh", // Subject line
-        html: `
+        html: getBodyHTMLEmail(dataSend),
+    });
+}
+
+let getBodyHTMLEmail = (dataSend) => {
+    let result = ''
+    if (dataSend.language === 'vi') {
+        result =
+            `
         <h3>Xin chào ${dataSend.patientName}</h3>
         <p>Bạn nhận được email này vì đã đặt lịch khám bệnh online trên Sức khỏe Việt</p>
         <p>Thông tin đặt lịch khám bệnh: </p>
@@ -33,11 +41,29 @@ let sendSimpleEmail = async (dataSend) => {
         <a href=${dataSend.redirectLink} target='_blank'>Click here!</a>
         </div>
 
-        <div>Xin chân thành cảm ơn</div>
-        `, // html body
-    });
+        <div>Xin chân thành cảm ơn!</div>
+        `
+    }
+    if (dataSend.language === 'en') {
+        result =
+            `
+        <h3>Dear ${dataSend.patientName}</h3>
+        <p>You received this email because you booked an online medical appointment on Viet Health</p>
+        <p>Information to schedule an appointment: </p>
+        <div><b>Time: ${dataSend.time}</b></div>
+        <div><b>Doctor: ${dataSend.doctorName}</b></div>
 
+        <p>If the above information is true, please click on the link below
+        to confirm the procedure and book an appointment.
+        </p>
+        <div>
+        <a href=${dataSend.redirectLink} target='_blank'>Click here!</a>
+        </div>
 
+        <div>Sincerely thank!</div>
+        `
+    }
+    return result;
 }
 
 
