@@ -24,7 +24,7 @@ let postBookAppointment = (data) => {
                 await emailService.sendSimpleEmail({
                     receiverEmail: data.email,
                     patientName: data.fullName,
-                    time: '8:00 - 9:00 Chủ nhật 1/5/2023',
+                    time: data.timeString,
                     doctorName: data.doctorName,
                     language: data.language,
                     redirectLink: buildUrlEmail(data.doctorId, token)
