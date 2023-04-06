@@ -135,8 +135,8 @@ let saveDetailInforDortor = (inputData) => {
                         nameClinic: inputData.nameClinic,
                         addressClinic: inputData.addressClinic,
                         note: inputData.note,
-                        specialtyId: specialtyId,
-                        clinicId: clinicId
+                        specialtyId: inputData.specialtyId,
+                        clinicId: inputData.clinicId
 
                     })
                 }
